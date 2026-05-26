@@ -1,22 +1,232 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Share+Tech+Mono&display=swap');
 
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-body{
-  font-family:Inter,sans-serif;
-  background:#050505;
-  overflow:hidden;
+body {
+  background: #050816;
+  color: #d8ffe9;
+  font-family: Inter;
+  overflow: hidden;
 }
 
-::-webkit-scrollbar{
-  width:6px;
+.app {
+  display: flex;
+  height: 100vh;
 }
 
-::-webkit-scrollbar-thumb{
-  background:#1f1f1f;
-  border-radius:10px;
+/* SIDEBAR */
+
+.sidebar {
+  width: 260px;
+  background: #08111f;
+  border-right: 1px solid #00ff8840;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.logo {
+  font-family: "Share Tech Mono";
+  font-size: 40px;
+  color: #00ff88;
+  margin-bottom: 30px;
+}
+
+.new-chat {
+  width: 100%;
+  border: none;
+  padding: 14px;
+  background: #00ff88;
+  color: black;
+  border-radius: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.sidebar-section {
+  margin-top: 30px;
+}
+
+.sidebar-section p {
+  color: #7c8b9a;
+  margin-bottom: 15px;
+}
+
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px;
+  border-radius: 12px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.sidebar-item:hover {
+  background: #101b2d;
+}
+
+.sidebar-footer {
+  color: #00ff88;
+  font-size: 13px;
+}
+
+/* CHAT */
+
+.chat-layout {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background:
+    linear-gradient(
+      rgba(0,255,136,0.04) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(0,255,136,0.04) 1px,
+      transparent 1px
+    );
+  background-size: 40px 40px;
+}
+
+.chat-header {
+  padding: 30px;
+  border-bottom: 1px solid #00ff8820;
+}
+
+.chat-header h1 {
+  color: #00ff88;
+  font-size: 42px;
+  font-family: "Share Tech Mono";
+}
+
+.chat-header p {
+  color: #7c8b9a;
+  margin-top: 8px;
+}
+
+.messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 30px;
+}
+
+/* MESSAGE */
+
+.message-row {
+  display: flex;
+  margin-bottom: 24px;
+}
+
+.message-row.user {
+  justify-content: flex-end;
+}
+
+.message-card {
+  max-width: 850px;
+  padding: 20px;
+  border-radius: 18px;
+  line-height: 1.8;
+  font-size: 16px;
+}
+
+.user .message-card {
+  background: linear-gradient(
+    135deg,
+    #00ff88,
+    #00cc6a
+  );
+  color: black;
+}
+
+.assistant .message-card {
+  background: rgba(11, 17, 32, 0.95);
+  border: 1px solid #00ff8830;
+}
+
+/* PROMPT */
+
+.prompt-bar {
+  padding: 24px;
+  border-top: 1px solid #00ff8820;
+  display: flex;
+  gap: 16px;
+}
+
+.prompt-bar textarea {
+  flex: 1;
+  background: #0b1120;
+  border: 1px solid #00ff8830;
+  color: white;
+  padding: 18px;
+  border-radius: 16px;
+  resize: none;
+  min-height: 60px;
+  font-size: 16px;
+}
+
+.prompt-bar button {
+  width: 64px;
+  border: none;
+  border-radius: 16px;
+  background: #00ff88;
+  color: black;
+  cursor: pointer;
+}
+
+/* CODE */
+
+.code-wrapper {
+  margin-top: 14px;
+  overflow: hidden;
+  border-radius: 16px;
+}
+
+.code-topbar {
+  background: #111827;
+  padding: 10px 16px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.code-topbar button {
+  background: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+/* IMAGE */
+
+.generated-image {
+  width: 100%;
+  max-width: 500px;
+  border-radius: 16px;
+}
+
+/* MOBILE */
+
+@media (max-width: 768px) {
+  .sidebar {
+    display: none;
+  }
+
+  .chat-header h1 {
+    font-size: 28px;
+  }
+
+  .messages {
+    padding: 16px;
+  }
+
+  .prompt-bar {
+    padding: 16px;
+  }
 }

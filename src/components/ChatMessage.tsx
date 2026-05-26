@@ -1,67 +1,45 @@
 import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import CodeBlock from "./CodeBlock";
+import type { Message } from "../App";
 
-type Props = {
-  role: "user" | "assistant";
-  content?: string;
-  image?: string;
-  type: "text" | "image";
-};
+interface Props {
+  message: Message;
+}
 
 export default function ChatMessage({
-  role,
-  content,
-  image,
-  type,
+  message,
 }: Props) {
+  const isUser = message.role === "user";
+
   return (
     <div
-      style={{
-        display: "flex",
-        justifyContent: role === "user" ? "flex-end" : "flex-start",
-      }}
+      className={`message-row ${
+        isUser ? "user" : "assistant"
+      }`}
     >
-      <div
-        style={{
-          maxWidth: "850px",
-          width: "fit-content",
-          padding: "20px",
-          borderRadius: "18px",
-          background:
-            role === "user"
-              ? "#00ff88"
-              : "rgba(0,0,0,0.75)",
-
-          color: role === "user" ? "#000" : "#d4ffe8",
-
-          border:
-            role === "assistant"
-              ? "1px solid rgba(0,255,100,0.2)"
-              : "none",
-        }}
-      >
-        {type === "image" && image && (
+      <div className="message-card">
+        {message.type === "image" ? (
           <img
-            src={image}
-            alt="generated"
-            style={{
-              width: "100%",
-              borderRadius: "14px",
-            }}
+            src={message.imageUrl}
+            className="generated-image"
           />
-        )}
-
-        {content && (
+        ) : (
           <ReactMarkdown
+            remarkPlugins={[remarkGfm]}
             components={{
               code(props) {
+                const { children } = props;
+
                 return (
-                  <CodeBlock code={String(props.children)} />
+                  <CodeBlock
+                    code={String(children)}
+                  />
                 );
               },
             }}
           >
-            {content}
+            {message.content}
           </ReactMarkdown>
         )}
       </div>
